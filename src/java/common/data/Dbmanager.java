@@ -24,7 +24,7 @@ public class Dbmanager {
                 if(conn!=null)
                 conn.close();
                 try {
-                    Class.forName("org.sqlite.JDBC");
+                    Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(Dbmanager.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -36,8 +36,8 @@ public class Dbmanager {
                 System.out.println("Connecting to database...");
                 
                 
-                return DriverManager.getConnection("jdbc:mysql://localhost/mydb?" +
-                                   "user=helmi&password=1234");
+                return DriverManager.getConnection("jdbc:mysql://localhost/mydb.db?" +
+                                   "user=root&password=root");
                 
                 
             } catch (SQLException ex) {

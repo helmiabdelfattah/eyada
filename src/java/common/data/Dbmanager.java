@@ -37,7 +37,7 @@ public class Dbmanager {
                 
                 
                 return DriverManager.getConnection("jdbc:mysql://localhost/mydb.db?" +
-                                   "user=root&password=root");
+                                   "user=root&password=");
                 
                 
             } catch (SQLException ex) {

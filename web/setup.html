@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Setup</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="css/agency.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index" ng-app="myApp" ng-controller="formCtrl">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">prescription</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#reports">Reports</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#cure">cure</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#eye">Eye disease</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">chronic disease</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+              <div class="row">
+                <div class="col-lg-12">
+                    <form name="prescription" id="contactForm" novalidate>
+                        <div class="row">
+							<div class="col-lg-12 text-center">
+                    <h2 class="section-heading">prescription</h2>
+					<hr>
+                </div>
+                            <div class="col-md-6">
+						
+                                <div class="form-group">
+								
+								<label class="control-label col-sm-2"> Name</label>
+                                                                <input type="text" ng-model="pre.name" class="form-control"   id="name" required data-validation-required-message="Please enter disease name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+								<label class="control-label col-sm-2">DiseaseCategory</label>
+								   <select ng-model="rescatdisease" name="disease_category" class="form-control" width="10">
+	                             <option  value="null" >All</option>
+	                             <option  ng-repeat="x in eyediscat" value="{{x.cat}}" >{{x.cat}}</option>
+                                 	</select>
+                                   <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+								<label class="control-label col-sm-2">Disease</label>
+                                                                <select ng-model="resdisease"  name="disease_category" class="form-control" width="10">
+                                                                    <option  ng-repeat="x in eyedisdata|filter:disbycat" value="{{x.name}}" >{{x.name}}</option>
+                                 	</select>
+                                                                
+                                   <p class="help-block text-danger"></p>
+                                </div>
+								<div class="form-group">
+								<label class="control-label col-sm-2">CureCategory</label>
+                                                                <select ng-model="resCureCategory" name="Cure_Category" class="form-control" width="10">
+                                                                   
+                                                                    <option value="null" >All</option>
+	                               <option  ng-repeat="x in curecat" value="{{x.catregory}}" >{{x.catregory}}</option>
+                                 	</select>
+                                   <p class="help-block text-danger"></p>
+                                      
+                                </div>
+                                <div class="form-group">
+								<label class="control-label col-sm-2">cure</label>
+                                                                <select ng-model="rescure"  name="disease_category" class="form-control" width="10">
+                                                                    <option  ng-repeat="x in curedata|filter:curebycat" value="{{x.describtion}}" >{{x.describtion}}</option>
+                                 	</select>
+                                                                
+                                   <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+								<label class="control-label col-sm-2">cureFormat</label>
+                                                                <select ng-model="rescureformat"  name="disease_category" class="form-control" width="10">
+                                                                    <option  ng-repeat="x in cureformat|filter:formatbycure" value="{{x.formate}}" >{{x.formate}}</option>
+                                 	</select>
+                                                                
+                                   <p class="help-block text-danger"></p>
+                                </div>
+								<div class="form-group">
+								<label class="control-label col-sm-2">notes</label>
+                                                                <textarea type="text" ng-model="prenote" class="form-control"   id="notes" required data-validation-required-message="Please enter your notes."></textarea>
+                                    
+									<p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+							<div class="col-md-6">
+                                <div class="form-group">
+								<label class="control-label col-sm-2">Amount</label>
+                                                                <input ng-model="preamount" type="text" class="form-control"   id="Amount" required data-validation-required-message="Please enter your notes."></input>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+								
+								<div class="form-group">
+								<label class="control-label col-sm-2">times</label>
+                                    <input ng-model="pretimes" type="text" class="form-control"   id="times" required data-validation-required-message="Please enter your notes."></input>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+								
+								<div class="form-group">
+								<label class="control-label col-sm-2">Duration</label>
+                                    <input ng-model="preduration" type="text" class="form-control"   id="Duration" required data-validation-required-message="Please enter your notes."></input>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+															
+							<div class="form-group">
+								<label class="control-label col-sm-2">place</label>
+                                                                <input type="text" ng-model="preplace" name="place" class="form-control" width="10">
+	                               
+                                 	 
+                                   <p class="help-block text-danger"></p>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                           	
+								<div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button ng-click="apply()" class="btn btn-xl">ADD</button>
+                            </div>
+                        </div>
+                    </form>
+					<table class="table">
+                    <thead>
+                     <tr>
+                     <th>Cure</th>
+                     <th>Formate</th>
+                     
+					
+					 <th>Times</th>
+					 <th>Duration</th>
+					 <th>Amount</th>
+                                          <th>Place</th>
+                                          <th>note</th>
+					 </tr>
+					 </thead>
+					 <tbody>
+                                             <tr ng-repeat="x in prelines">
+                                                 <td>
+                                                     {{x.cure}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.format}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.times}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.Duration}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.Amount}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.place}}
+                                                 </td>
+                                                 <td>
+                                                     {{x.note}}
+                                                 </td>
+                                                 
+                                             </tr>
+					 </tbody>
+					 </table>
+                </div>
+				</div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <section id="reports" class="bg-light-gray">
+	 <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Reports</h2>
+					<hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                   
+                        <div class="row">
+                            <div class="col-md-6">
+                               
+                                <div class="form-group">
+								<label class="control-label col-sm-2"><i>Type</i></label>
+                                                                <input type="text" name="chronic diseases1" ng-model="report.type" class="form-control" width="10">
+	                               
+                                 	 
+                                   <p class="help-block text-danger"></p>
+								   <label class="control-label col-sm-2">notes</label>
+                                    <textarea type="text" class="form-control" ng-model="report.note"   id="notes" required data-validation-required-message="Please enter your notes."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                </div>
+								
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button ng-click="newreport()" class="btn btn-xl">save</button>
+                            </div>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+       
+    </section>
+
+    <!-- About Section -->
+    <section id="cure">
+         <div class="row">
+                <div class="col-lg-12">
+                     
+                        <div class="row">
+						<div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Cure</h2>
+					<hr>
+                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+								
+								<label class="control-label col-sm-2"> CureName</label>
+                                    <input type="text" class="form-control" ng-model="cuer.name"   id="name" required data-validation-required-message="Please enter disease name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+								<label class="control-label col-sm-2"> Category</label>
+                                                                <input ng-model="cuer.category" type="text" name="chronic diseases0" class="form-control" width="10">
+	                             
+                                 	 
+                                   <p class="help-block text-danger"></p>
+                                </div>
+                            
+                            <div class="clearfix"></div>
+                           	<div class="form-group">
+								<label class="control-label col-sm-2"> Format</label>
+								   <input ng-model="cuer.format" type="text" name="chronic diseases3" class="form-control" width="10">
+	                               
+                                 	 
+                                   <p class="help-block text-danger"></p>
+                                </div>
+								<div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button ng-click="newcure()" class="btn btn-xl">save</button>
+                            </div>
+                           </div>
+                        </div>
+                     
+                </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="eye" class="bg-light-gray">
+        <div class="row">
+                <div class="col-lg-12">
+				<div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Eye Disease</h2>
+					<hr>
+                </div>
+                     
+                        <div class="row">
+                            <div class="col-md-6">
+							
+                                <div class="form-group">
+								<label >Name</label>
+                                                                <input type="text" class="form-control" ng-model="eyedis.name"   id="name"  >
+                                    <p class="help-block text-danger"></p>
+                                
+                                <div class="form-group">
+								<label > category</label>
+                                                                <input ng-model="eyedis.category" type="text" name="chronic diseases1" class="form-control"  >
+	                                 
+                                 	 
+									
+									<div class="form-group">
+									<label  >Notes</label>
+                                    <textarea ng-model="eyedis.note" class="form-control"   id="note" required data-validation-required-message="Please enter your notes."></textarea>
+								   
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                   <p class="help-block text-danger"></p>
+                                </div>
+								
+                            </div>
+                          
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button  ng-click="neweyedis()" class="btn btn-xl">save</button>
+                            </div>
+							</div>
+                        </div>
+                     
+                </div>
+				</div>
+    </section>
+
+    <!-- Clients Aside -->
+    <aside class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Chronic disease</h2>
+					<hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                     
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+								
+								<label  Style="color:white"> Name</label>
+                                    <input ng-model="cordis.name" type="text" class="form-control"   id="name" required data-validation-required-message="Please enter disease name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+								<label Style="color:white">Type</label>
+                                                                <input type="text" name="chronic diseases1" class="form-control" ng-model="cordis.type">
+	                               
+                                 	 
+                                   <p class="help-block text-danger"></p>
+                                </div>
+								
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+								<label  Style="color:white"> Notes</label>
+                                    <textarea ng-model="cordis.note" class="form-control"   id="note" required data-validation-required-message="Please enter your notes."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button ng-click="newcordis()" class="btn btn-xl">save</button>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Muhammad&Helmi 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
+    <script src="js/app.js"></script>
+
+
+</body>
+
+</html>

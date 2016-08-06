@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.ResultSet;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import sys.eye_dis;
  
  
 
@@ -28,24 +29,20 @@ import org.json.JSONObject;
  *
  * @author Admin
  */
-@WebServlet(name = "cure", urlPatterns = {"/cure"})
-public class cure extends HttpServlet {
+@WebServlet(name = "eyedis", urlPatterns = {"/eyedis"})
+public class eyedis extends HttpServlet {
+
      @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
-      String sql = "SELECT distinct describtion , catregory FROM mydb.cure;";
-       try { if (req.getParameter("req").equals("cat")){
-        sql = "SELECT distinct catregory FROM mydb.cure;";
-        }
-       else if(req.getParameter("req").equals("format")){ sql = "select * from cure";}}
+       String sql ="select * from eye_diseases";
+       try {if(req.getParameter("req").equals("cat")) 
+           sql = "SELECT distinct cat FROM mydb.eye_diseases;";}
        catch(Exception e){}
           ResultSet rs = db.getdb(sql);
           
-        resp.getWriter().print(JsonConvert.getJSONFromResultSet(rs, "cure"));
+        resp.getWriter().print(JsonConvert.getJSONFromResultSet(rs, "eye_diseases"));
     }
 
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,14 +58,9 @@ public class cure extends HttpServlet {
    
      
       
-        sys.cure x = new sys.cure();
-            x.setName(obj.get("name").toString());
-              
-            x.setId((db.getmaxcureid() + 1));
-            x.setCategory(obj.get("category").toString());
-            x.setFormate(obj.get("formate").toString());
-
-            x.addtodb(x);
+      eye_dis e = new eye_dis(obj.get("name").toString(),obj.get("category").toString().toString(), obj.get("note").toString());
+       e.addtodb(e);
+             
        }
        catch(Exception e){
        resp.getWriter().print(e);

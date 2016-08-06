@@ -13,34 +13,47 @@ and open the template in the editor.
     </head>
     <body>
     <div ng-app="myApp" ng-controller="formCtrl">
-           <form action="cure" method="post">
-                  cure Name:<br>
-    <input type="text" ng-model="cuer.name" name="name"  ><br> 
-                  cure category:<br>
-    <input type="text" ng-model="cuer.category" name="category"><br> 
-                  cure format:<br>
-    <input type="text" ng-model="cuer.format" name="formate"><br> 
-    <input type="submit" value="submit">
-           </form>
-   </div>
+        <input type="button" ng-click="test()" value="click" name="test" />
    
+   
+        <input type="button" ng-click="datt()" value="click" name="test" />
+   
+     
+        <input type="button" ng-click="tes()" value="click" name="test" />
+        <table>
+            <tr ng-repeat="x in curedata">
+                <td>{{x.formate}}</td>
+                <td>{{x.catregory}}</td>
+                <td>{{x.cure_id}}</td>
+                <td>{{x.describtion}}</td>
+            </tr>
+        </table>
+    </div>
     </body>
     
     <script>
 var app = angular.module('myApp', []);
 app.controller('formCtrl', function($scope,$http) {
-      
-  $scope.newcure = function(){
+    
+   
        
-          return $http.post("cure",
-        { name:$scope.cuer.name,
-          category:$scope.cuer.category ,
-          formate:$scope.cuer.format})
-        .then(function (response) {
-            return response;
-        });
+        $http.get("cure")
+    .then(function(response) {
+        $scope.curedata = response.data.cure;
+     });
+ 
   
+  $scope.tes = function(){
+       
+        $http.get("report")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+        alert(JSON.stringify($scope.myWelcome)) ;
+    });
   };
+  
+  
+  
 });
 </script>
 </html>

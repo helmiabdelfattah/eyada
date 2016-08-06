@@ -28,24 +28,17 @@ import org.json.JSONObject;
  *
  * @author Admin
  */
-@WebServlet(name = "cure", urlPatterns = {"/cure"})
-public class cure extends HttpServlet {
-     @Override
+@WebServlet(name = "report", urlPatterns = {"/report"})
+public class report extends HttpServlet {
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        
-      String sql = "SELECT distinct describtion , catregory FROM mydb.cure;";
-       try { if (req.getParameter("req").equals("cat")){
-        sql = "SELECT distinct catregory FROM mydb.cure;";
-        }
-       else if(req.getParameter("req").equals("format")){ sql = "select * from cure";}}
-       catch(Exception e){}
-          ResultSet rs = db.getdb(sql);
+          ResultSet rs = db.getdb("select * from report");
           
-        resp.getWriter().print(JsonConvert.getJSONFromResultSet(rs, "cure"));
+        resp.getWriter().print(JsonConvert.getJSONFromResultSet(rs, "report"));
     }
 
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,14 +54,9 @@ public class cure extends HttpServlet {
    
      
       
-        sys.cure x = new sys.cure();
-            x.setName(obj.get("name").toString());
-              
-            x.setId((db.getmaxcureid() + 1));
-            x.setCategory(obj.get("category").toString());
-            x.setFormate(obj.get("formate").toString());
-
-            x.addtodb(x);
+      
+           
+            db.exedb("insert into report values ('"+obj.get("type").toString()+"' , '"+obj.get("note").toString()+"');");
        }
        catch(Exception e){
        resp.getWriter().print(e);

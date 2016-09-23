@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html lang="en">
+    <head>
+        <title>Reception</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/app.js"></script>
+        <script src="js/typeahead.js"></script>
+        <script src="js/parseoptions.js"></script>
+        <link rel="stylesheet" href="css/acute.select.css">
+        <script src="js/acute.select.js"></script>
+
+    </head>
+    <body >
+        <div ng-app="myApp" ng-controller="formCtrl">
+
+
+
+
+
+            <div class="container">
+                <form class="form-inline" role="form">
+                    <center>
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="selectedpatient" bs-options="state for state in states" placeholder="Search" bs-typeahead>
+                        </div>
+                    </center>
+                    <div class="table-responsive">
+                        <label>patients with common "{{selectedpatient}}" :</label>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Address
+                                </th>
+                                <th>
+                                    Age
+                                </th>
+                                <th>
+                                    Phone
+                                </th>
+                            </tr>
+                            <tbody>
+                                <tr style="cursor: pointer;" ng-click="recepedit(x.patient_id)" ng-repeat="x in patientview|filter:select">
+                                    <td>
+                                        <span  > {{x.first_name}}</span>
+                                    </td>
+                                    <td>
+                                        {{x.address_1}}
+                                    </td>
+                                    <td>
+                                        {{x.age}}
+                                    </td>
+                                    <td>
+                                        {{x.phone}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div ng-bind="selectedState" class="col-md-2"></div>
+
+                    </div>
+                </form>  
+                <div class="container">
+                    <hr>
+                    <center>
+                        <h2>Patients In Reception</h2>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Address
+                            </th>
+                            <th>
+                                Age
+                            </th>
+                            <th>
+                                Phone
+                            </th>
+                        </tr>
+                        <tr ng-repeat="x in reception">
+                            <td>
+                                {{x.name}}
+                            </td>
+                            <td>
+                                {{x.address}}
+                            </td>
+                            <td>
+                                {{x.age}}
+                            </td>
+                            <td>
+                                {{x.phone}}
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+                </div>
+
+
+                </body>
+                </html>

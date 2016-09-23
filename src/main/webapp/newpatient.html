@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>New patient</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <script src="js/angular.min.js"></script>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="formCtrl">
+       
+       
+        <div class="container">
+            <center><h2>New Patient</h2></center>
+
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Title:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Name:</label>
+                    <div class="col-sm-10">
+                        <input type="Name" class="form-control" ng-model="pat.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">BirthDay:</label>
+                    <div class="col-sm-10">
+                        <input type="Date" class="form-control" ng-model="pat.date" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Age:</label>
+                    <div class="col-sm-10">
+                        <input type="Age" class="form-control" ng-model="pat.age"  width="12px">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" >Sex</label>
+                    <div class="col-sm-10" >
+                        <select ng-model="pat.sex" class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" ng-model="pat.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Mobile:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.mobile">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Address">Address:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.address" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Facebook</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.facebook">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">company</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.company">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Meeting</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.meeting">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Notes">Notes:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pat.note">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-click="newpat()" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>
